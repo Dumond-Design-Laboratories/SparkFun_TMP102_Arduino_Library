@@ -32,6 +32,7 @@ class TMP102
 		// Device ID: 0x48-GND (default), 0x49-VCC, 0x4A-SDA, 0x4B-SCL
 		// Sets the I2C bus (Wire by default)
 		bool begin(uint8_t deviceAddress = 0x48, TwoWire &wirePort = Wire);
+		int16_t readTempRegister(void); // Returns raw temperature register value
 		float readTempC(void);	// Returns the temperature in degrees C
 		float readTempF(void);	// Converts readTempC result to degrees F
 		void sleep(void);	// Switch sensor to low power mode

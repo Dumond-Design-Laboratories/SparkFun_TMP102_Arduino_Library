@@ -58,7 +58,7 @@ uint8_t TMP102::readRegister(bool registerNumber)
   return registerByte[registerNumber];
 }
 
-float TMP102::readTempC(void)
+int16_t TMP102::readTempRegister(void)
 {
   uint8_t registerByte[2]; // Store the data from the register here
   int16_t digitalTemp;     // Temperature stored in TMP102 register
@@ -98,8 +98,12 @@ float TMP102::readTempC(void)
       digitalTemp |= 0xF000;
     }
   }
+  return digitalTemp;
+}
+
+float TMP102::readTempC() {
   // Convert digital reading to analog temperature (1-bit is equal to 0.0625 C)
-  return digitalTemp * 0.0625;
+  return readTempRegister() * 0.0625;
 }
 
 float TMP102::readTempF(void)
