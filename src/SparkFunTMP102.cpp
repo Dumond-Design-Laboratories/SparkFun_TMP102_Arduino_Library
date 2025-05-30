@@ -72,7 +72,7 @@ int16_t TMP102::readTempRegister(void)
 
   if (registerByte[0] == 0xFF && registerByte[1] == 0xFF)
   {
-    return NAN;
+    return INT16_MIN;
   }
 
   // Bit 0 of second byte will always be 0 in 12-bit readings and 1 in 13-bit
@@ -370,7 +370,7 @@ float TMP102::readLowTempC(void)
   uint8_t registerByte[2]; // Store the data from the register here
   bool extendedMode;       // Store extended mode bit here 0:-55C to +128C, 1:-55C to +150C
   int16_t digitalTemp;     // Store the digital temperature value here
-  float temperature;       // Store the analog temperature value here
+  //float temperature;       // Store the analog temperature value here
 
   // Check if temperature should be 12 or 13 bits
   openPointerRegister(CONFIG_REGISTER); // Read configuration register settings
@@ -419,7 +419,7 @@ float TMP102::readHighTempC(void)
   uint8_t registerByte[2]; // Store the data from the register here
   bool extendedMode;       // Store extended mode bit here 0:-55C to +128C, 1:-55C to +150C
   int16_t digitalTemp;     // Store the digital temperature value here
-  float temperature;       // Store the analog temperature value here
+  //float temperature;       // Store the analog temperature value here
 
   // Check if temperature should be 12 or 13 bits
   openPointerRegister(CONFIG_REGISTER); // read configuration register settings
